@@ -40,6 +40,7 @@ a:hover{text-decoration:underline}
 .nav .links{display:flex;gap:26px}
 .nav .links a{color:var(--ink-2);font-size:13.5px;font-weight:400}
 .nav .links a:hover{color:var(--ink);text-decoration:none}
+.nav .links a.active{color:var(--blue);font-weight:600}
 @media(max-width:720px){.nav .links{display:none}}
 
 /* ---------- Hero ---------- */

@@ -341,6 +341,18 @@ async function main() {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }), { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- scroll-spy: resalta el enlace de la sección visible ---- */
+  const navLinks = [...document.querySelectorAll('.nav .links a')];
+  const byId = id => navLinks.find(a => a.getAttribute('href') === '#' + id);
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = byId(e.target.id);
+      if (link) link.classList.add('active');
+    }
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
 }
 
 main();
