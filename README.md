@@ -8,7 +8,7 @@ generados a partir de los **datos reales** del proyecto.
 - `styles.css` — estilo Apple (tipografía del sistema, tarjetas, blur en nav).
 - `app.js` — carga `data.json` y dibuja los gráficos con Chart.js (CDN).
 - `data.json` — resultados reales exportados por `python -m src.export_web`.
-- `logo_uss.png` — **(falta)** logo de la Universidad San Sebastián. Deposítalo aquí.
+- `logo_uss.png` — **(falta)** logo de la Universidad Señor de Sipán. Deposítalo aquí.
 - `vercel.json` — configuración de despliegue.
 
 ## Regenerar los datos
