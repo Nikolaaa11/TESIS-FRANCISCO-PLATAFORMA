@@ -54,9 +54,57 @@ function renderHip() {
       <h3 style="font-size:17px">${t}</h3><p>${ev}</p></div>`).join('');
 }
 
+/* ---- Descargas: tesis + material de investigación (Word y PDF) ---- */
+const DL_FEATURED = [
+  ['Tesis_Francisco_Rietta', 'Tesis completa', 'Documento final · 75 páginas · formato USS + APA 7', '1.5 MB', '210 KB', 'Cu'],
+  ['Compendio_Investigacion', 'Compendio de Investigación', 'Todo el material de investigación en un solo documento', '4.8 MB', '0.7 MB', '∑'],
+];
+const DL_DOCS = [
+  ['estado_del_arte', 'Estado del Arte', 'Qué se sabe y qué vacío llena la tesis', '184 KB'],
+  ['historia_del_cobre', 'Historia del Cobre', 'Historia económica del cobre en Chile, 2004–2024', '300 KB'],
+  ['revision_literatura', 'Revisión de Literatura', 'Marco de antecedentes estructurado', '260 KB'],
+  ['lit_chilena', 'Literatura Chilena y Latinoamericana', 'Tipo de cambio, cobre y mercado local', '300 KB'],
+  ['lit_emergentes', 'Literatura de Mercados Emergentes', 'Commodities y mercados emergentes', '328 KB'],
+  ['busqueda_literatura', 'Estrategia de Búsqueda Bibliográfica', 'Términos, fuentes y criterios', '240 KB'],
+  ['mejoras_metodologicas', 'Mejoras Metodológicas', 'Batería econométrica de segunda generación', '4.2 MB'],
+  ['diseno_triangulacion', 'Diseño de Triangulación', 'Tres muestras para un mismo subyacente', '220 KB'],
+  ['matriz_consistencia', 'Matriz de Consistencia', 'Problema – objetivos – hipótesis – método', '276 KB'],
+  ['referencias', 'Referencias', 'Listado completo en formato APA 7', '164 KB'],
+  ['hallazgos_datos', 'Hallazgos de los Datos', 'Resultados de las series (FRED + Yahoo Finance)', '4.0 MB'],
+  ['guia_descarga_bcch', 'Guía de Descarga (BCCh)', 'Descarga del EMBI desde el Banco Central', '240 KB'],
+  ['reproducibilidad', 'Reproducibilidad', 'Flujo de trabajo, entorno y pasos para replicar', '196 KB'],
+];
+const PDF_IC = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+
+function renderDescargas() {
+  const feat = document.getElementById('dl-featured');
+  if (feat) {
+    feat.innerHTML = DL_FEATURED.map(([file, title, desc, pdfsz, docsz, ic]) =>
+      `<div class="dl-card feat reveal">
+        <div class="dl-top"><div class="dl-ic">${ic}</div>
+          <div class="dl-meta"><h3>${title}</h3><p>${desc}</p></div></div>
+        <div class="dl-actions">
+          <a class="dl-btn pdf" href="descargas/${file}.pdf" download>${PDF_IC} PDF <span class="sz">${pdfsz}</span></a>
+          <a class="dl-btn word" href="descargas/${file}.docx" download>${PDF_IC} Word <span class="sz">${docsz}</span></a>
+        </div></div>`).join('');
+  }
+  const g = document.getElementById('dl-grid');
+  if (g) {
+    g.innerHTML = DL_DOCS.map(([file, title, desc, pdfsz]) =>
+      `<div class="dl-card reveal">
+        <div class="dl-top"><div class="dl-ic">${PDF_IC}</div>
+          <div class="dl-meta"><h3>${title}</h3><p>${desc}</p></div></div>
+        <div class="dl-actions">
+          <a class="dl-btn pdf" href="descargas/${file}.pdf" download>PDF <span class="sz">${pdfsz}</span></a>
+          <a class="dl-btn word" href="descargas/${file}.docx" download>Word</a>
+        </div></div>`).join('');
+  }
+}
+
 async function main() {
   renderOE();
   renderHip();
+  renderDescargas();
   let d;
   try { d = await (await fetch('data.json')).json(); }
   catch (e) { console.error('No se pudo cargar data.json', e); return; }

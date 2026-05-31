@@ -153,6 +153,29 @@ footer p{font-size:13px;color:var(--ink-2);max-width:70ch}
   border-radius:980px;padding:8px 16px;font-size:13.5px;font-family:inherit;cursor:pointer;justify-self:start}
 .btn-reset:hover{background:#f5f5f7}
 
+/* ---------- Descargas ---------- */
+.dl-card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease;
+  display:flex;flex-direction:column;gap:14px}
+.dl-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.dl-card.feat{border-color:rgba(0,113,227,.25)}
+.dl-top{display:flex;gap:16px;align-items:flex-start}
+.dl-ic{flex:0 0 44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:#eef4ff;color:var(--blue);font-size:18px;font-weight:700}
+.dl-card.feat .dl-ic{background:var(--blue);color:#fff}
+.dl-meta h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.dl-card.feat .dl-meta h3{font-size:20px}
+.dl-meta p{font-size:14px;color:var(--ink-2);line-height:1.45}
+.dl-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.dl-btn{display:inline-flex;align-items:center;gap:7px;border-radius:980px;padding:9px 16px;
+  font-size:13.5px;font-weight:500;border:1px solid var(--line);transition:all .15s ease}
+.dl-btn:hover{text-decoration:none;transform:translateY(-1px)}
+.dl-btn.pdf{background:var(--blue);color:#fff;border-color:var(--blue)}
+.dl-btn.pdf:hover{box-shadow:0 8px 22px rgba(0,113,227,.30)}
+.dl-btn.word{background:#fff;color:var(--ink)}
+.dl-btn.word:hover{background:#f5f5f7}
+.dl-btn .sz{color:inherit;opacity:.7;font-variant-numeric:tabular-nums;font-size:12px}
+
 /* ---------- Veredicto de hipótesis ---------- */
 .hip-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .hip-badge{font-size:12px;font-weight:600;padding:4px 12px;border-radius:980px}
