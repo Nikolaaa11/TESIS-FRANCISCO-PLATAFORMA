@@ -1140,6 +1140,157 @@
       "m_regresores": 2,
       "cointegra_con_quiebre_5pct": true,
       "interpretacion": "Si gh_adf_stat < valor crítico, hay cointegración con un quiebre en la fecha estimada; complementa al ARDL/Johansen sin quiebre (H5)."
+    },
+    "fdr": [
+      {
+        "factor": "Cobre",
+        "p": 0.0,
+        "p_fdr": 0.0,
+        "sig_fdr": true
+      },
+      {
+        "factor": "VIX",
+        "p": 0.0,
+        "p_fdr": 0.0,
+        "sig_fdr": true
+      },
+      {
+        "factor": "Fed Funds",
+        "p": 0.345,
+        "p_fdr": 0.439,
+        "sig_fdr": false
+      },
+      {
+        "factor": "Treasury 10Y",
+        "p": 0.3763,
+        "p_fdr": 0.439,
+        "sig_fdr": false
+      },
+      {
+        "factor": "TC CLP",
+        "p": 0.0001,
+        "p_fdr": 0.0002,
+        "sig_fdr": true
+      },
+      {
+        "factor": "Tasa local",
+        "p": 0.6621,
+        "p_fdr": 0.6621,
+        "sig_fdr": false
+      },
+      {
+        "factor": "Actividad local",
+        "p": 0.0761,
+        "p_fdr": 0.1332,
+        "sig_fdr": false
+      }
+    ],
+    "betas_estandarizados": [
+      {
+        "factor": "VIX",
+        "beta": -0.0077,
+        "beta_std": -0.3079
+      },
+      {
+        "factor": "Cobre",
+        "beta": 0.5712,
+        "beta_std": 0.2869
+      },
+      {
+        "factor": "TC CLP",
+        "beta": -1.5735,
+        "beta_std": -0.1287
+      },
+      {
+        "factor": "Actividad local",
+        "beta": -0.5231,
+        "beta_std": -0.0834
+      },
+      {
+        "factor": "Treasury 10Y",
+        "beta": 0.0226,
+        "beta_std": 0.044
+      },
+      {
+        "factor": "Fed Funds",
+        "beta": 0.0196,
+        "beta_std": 0.0264
+      },
+      {
+        "factor": "Tasa local",
+        "beta": -0.0073,
+        "beta_std": -0.0218
+      }
+    ],
+    "gjr_garch": {
+      "gjr_gamma": 0.2208,
+      "gjr_gamma_p": 0.0233,
+      "bic_garch": 1899.2,
+      "bic_gjr": 1898.7,
+      "prefiere_asimetrico": true,
+      "interpretacion": "gamma>0 y significativo indica efecto apalancamiento: las caídas elevan más la volatilidad futura que las alzas."
+    },
+    "local_projections": {
+      "h": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "resp": [
+        0.68059,
+        0.32278,
+        0.2161,
+        0.1262,
+        -0.09264,
+        -0.15561,
+        -0.17124,
+        -0.08511,
+        -0.21788,
+        -0.11876,
+        0.10282,
+        0.02768,
+        0.00481
+      ],
+      "lo": [
+        0.51486,
+        0.09966,
+        0.00137,
+        -0.05049,
+        -0.31931,
+        -0.49834,
+        -0.40619,
+        -0.39212,
+        -0.42739,
+        -0.29076,
+        -0.1603,
+        -0.20236,
+        -0.19259
+      ],
+      "hi": [
+        0.84631,
+        0.54591,
+        0.43084,
+        0.3029,
+        0.13403,
+        0.18713,
+        0.0637,
+        0.22189,
+        -0.00837,
+        0.05325,
+        0.36595,
+        0.25773,
+        0.20221
+      ]
     }
   }
 }
