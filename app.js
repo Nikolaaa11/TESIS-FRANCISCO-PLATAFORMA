@@ -206,6 +206,36 @@ async function main() {
         tooltip: { callbacks: { label: c => ` β cobre: ${c.parsed.y}` } } },
         scales: { x: { grid: { display: false } }, y: { grid: { color: LINE }, beginAtZero: true } } }
     });
+
+    // Betas estandarizados (barra horizontal, ordenados por |efecto|)
+    if (av.betas_estandarizados) {
+      const bs = av.betas_estandarizados.slice().sort((a, b) => Math.abs(b.beta_std) - Math.abs(a.beta_std));
+      new Chart('betasChart', {
+        type: 'bar',
+        data: { labels: bs.map(x => x.factor), datasets: [{ data: bs.map(x => x.beta_std),
+          backgroundColor: bs.map(x => x.beta_std >= 0 ? '#34c759' : '#ff3b30'), borderRadius: 6 }] },
+        options: { indexAxis: 'y', maintainAspectRatio: false,
+          plugins: { legend: { display: false },
+            tooltip: { callbacks: { label: c => ` ${(+c.parsed.x).toFixed(2)} σ` } } },
+          scales: { x: { grid: { color: LINE }, title: { display: true, text: 'Efecto en desviaciones estándar' } },
+            y: { grid: { display: false } } } }
+      });
+    }
+    // Local Projections (línea con banda IC95%)
+    if (av.local_projections) {
+      const lp = av.local_projections;
+      new Chart('lpChart', {
+        type: 'line',
+        data: { labels: lp.h, datasets: [
+          { data: lp.resp, borderColor: BLUE, borderWidth: 2, pointRadius: 2, tension: .3, fill: false },
+          { data: lp.hi, borderColor: 'rgba(0,113,227,.2)', borderWidth: 1, pointRadius: 0, fill: '+1' },
+          { data: lp.lo, borderColor: 'rgba(0,113,227,.2)', borderWidth: 1, pointRadius: 0,
+            backgroundColor: 'rgba(0,113,227,.08)', fill: false } ] },
+        options: { maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: { x: { grid: { display: false }, title: { display: true, text: 'Horizonte (meses)' } },
+            y: { grid: { color: LINE } } } }
+      });
+    }
   }
 
   /* ---- 6. Tabla de estacionariedad ---- */
