@@ -138,3 +138,16 @@ footer p{font-size:13px;color:var(--ink-2);max-width:70ch}
   font-family:inherit;letter-spacing:-.01em}
 .seg-btn:hover{color:var(--ink)}
 .seg-btn.active{background:#fff;color:var(--blue);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+
+/* ---------- Predictor ---------- */
+.slider-row{margin:12px 0}
+.slider-row label{display:flex;justify-content:space-between;font-size:13.5px;color:var(--ink-2);margin-bottom:4px}
+.slider-row .sval{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+.slider-row input[type=range]{width:100%;accent-color:var(--blue);height:4px}
+.pred-out{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:10px}
+.pred-out>div{display:flex;justify-content:space-between;align-items:baseline}
+.pred-label{font-size:14px;color:var(--ink-2)}
+.pred-val{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+.btn-reset{margin-top:8px;border:1px solid var(--line);background:#fff;color:var(--ink);
+  border-radius:980px;padding:8px 16px;font-size:13.5px;font-family:inherit;cursor:pointer;justify-self:start}
+.btn-reset:hover{background:#f5f5f7}

@@ -218,6 +218,66 @@ async function main() {
         <td class="mono">${r.kpss_p}</td><td><span class="badge ${cls}">${r.orden}</span></td></tr>`;
     }).join('') + '</tbody>';
 
+  /* ---- Predictor interactivo (datos en predictor.json) ---- */
+  try {
+    const pd = await (await fetch('predictor.json')).json();
+    const state = {};
+    pd.features.forEach(f => state[f.key] = f.actual);
+    const fmtPct = v => (v >= 0 ? '+' : '') + (v * 100).toFixed(2) + '%';
+
+    function predict() {
+      let r = pd.intercepto;
+      pd.features.forEach(f => r += f.coef * state[f.key]);
+      const price = pd.ultimo_precio * Math.exp(r);
+      const elR = document.getElementById('pred-ret');
+      elR.textContent = fmtPct(r);
+      elR.style.color = r >= 0 ? '#1a7f37' : '#c4351c';
+      document.getElementById('pred-price').textContent =
+        price.toLocaleString('es-CL', { maximumFractionDigits: 0 }) + ' USD/t';
+    }
+    const cont = document.getElementById('pred-sliders');
+    cont.innerHTML = pd.features.map((f, i) => {
+      const min = Math.min(f.p05, f.actual), max = Math.max(f.p95, f.actual);
+      const step = (max - min) / 100 || 0.001;
+      return `<div class="slider-row">
+        <label>${f.label}<span class="sval" id="sv-${i}">${(+f.actual).toFixed(3)}</span></label>
+        <input type="range" id="sl-${i}" min="${min}" max="${max}" step="${step}" value="${f.actual}">
+      </div>`;
+    }).join('');
+    pd.features.forEach((f, i) => {
+      const sl = document.getElementById('sl-' + i);
+      sl.addEventListener('input', () => {
+        state[f.key] = parseFloat(sl.value);
+        document.getElementById('sv-' + i).textContent = state[f.key].toFixed(3);
+        predict();
+      });
+    });
+    document.getElementById('pred-reset').addEventListener('click', () => {
+      pd.features.forEach((f, i) => {
+        state[f.key] = f.actual;
+        document.getElementById('sl-' + i).value = f.actual;
+        document.getElementById('sv-' + i).textContent = (+f.actual).toFixed(3);
+      });
+      predict();
+    });
+    predict();
+
+    // tabla de modelos
+    const m = pd.metricas_oos;
+    const rows = Object.entries(m).map(([name, v]) =>
+      `<tr><td>${name}</td><td class="mono">${v.r2_oos >= 0 ? '+' : ''}${v.r2_oos}</td>
+       <td class="mono">${(v.acierto_direccional * 100).toFixed(0)}%</td>
+       <td class="mono">${v.rmse}</td></tr>`).join('');
+    document.getElementById('pred-table').innerHTML =
+      '<thead><tr><th>Modelo</th><th>R² OOS</th><th>Acierto dir.</th><th>RMSE</th></tr></thead><tbody>'
+      + rows + '</tbody>';
+    document.getElementById('pred-insight').innerHTML =
+      '<strong>Lectura:</strong> el R² fuera de muestra es cercano a cero o negativo en todos los ' +
+      'modelos: los factores macro <strong>explican</strong> el retorno contemporáneo del cobre ' +
+      '(ver Resultados) pero apenas lo <strong>anticipan</strong> a un mes — coherente con la ' +
+      'hipótesis de eficiencia de mercado. El mejor predictor simple es el momentum (AR(1)).';
+  } catch (e) { console.warn('predictor.json no disponible', e); }
+
   /* ---- reveal on scroll ---- */
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }

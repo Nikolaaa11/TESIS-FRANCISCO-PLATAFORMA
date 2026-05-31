@@ -21,6 +21,7 @@
       <a href="#metodo">Metodología</a>
       <a href="#resultados">Resultados</a>
       <a href="#avanzado">Avanzado</a>
+      <a href="#predictor">Predictor</a>
       <a href="#conclusiones">Conclusiones</a>
     </div>
   </div>
@@ -241,6 +242,41 @@
         <h3>Robustez: β del cobre por subperíodo</h3>
         <p class="hint">El efecto del cobre se mantiene y se intensifica tras 2020.</p>
         <div class="chart-wrap"><canvas id="robChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PREDICTOR ===== -->
+<section id="predictor" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Extensión predictiva</div>
+      <h2>Predictor del precio del cobre</h2>
+      <p class="lead">Explorador interactivo de escenarios: ajusta las condiciones macro y el
+        modelo estima el <strong>retorno y precio del cobre del próximo mes</strong>. Entrenado con
+        datos reales (FRED) y evaluado <strong>fuera de muestra</strong>. La tesis es explicativa;
+        esto es una extensión demostrativa.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="chart-card reveal">
+        <h3>Explorador de escenarios</h3>
+        <p class="hint">Mueve los controles (parten del valor más reciente) y observa la predicción.</p>
+        <div id="pred-sliders"></div>
+        <div class="pred-out">
+          <div><span class="pred-label">Retorno estimado (próx. mes)</span>
+            <span class="pred-val" id="pred-ret">—</span></div>
+          <div><span class="pred-label">Precio estimado del cobre</span>
+            <span class="pred-val" id="pred-price">—</span></div>
+          <button class="btn-reset" id="pred-reset">Reiniciar al escenario actual</button>
+        </div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Desempeño fuera de muestra · comparación de modelos</h3>
+        <p class="hint">Métricas honestas sobre el 25% más reciente de los datos. Acierto
+          direccional = % de meses con el signo correcto.</p>
+        <table class="table" id="pred-table"></table>
+        <p class="hint" id="pred-insight" style="margin-top:14px"></p>
       </div>
     </div>
   </div>
