@@ -27,8 +27,36 @@ function renderOE() {
     `<div class="card reveal"><div class="num">${n}</div><h3>${t}</h3><p>${d}</p></div>`).join('');
 }
 
+const HIP = [
+  ['H1', 'El precio del cobre afecta positivamente los retornos', 'ok',
+   'β cobre +0,57*** ; robusto a corrección FDR y a subperíodos.'],
+  ['H2', 'El tipo de cambio incide en los retornos (signo a determinar)', 'ok',
+   'ΔTC −1,57*** ; capta el canal de competitividad y de riesgo.'],
+  ['H3', 'Las tasas de interés afectan negativamente los retornos', 'no',
+   'Tasa local y externa no significativas en esta especificación.'],
+  ['H4', 'El riesgo global (VIX) afecta negativamente los retornos', 'ok',
+   'VIX negativo y significativo; mayor efecto estandarizado (−0,31σ).'],
+  ['H5', 'Existe relación de cointegración de largo plazo', 'ok',
+   'Confirmada con quiebre estructural en 2008 (Gregory-Hansen).'],
+  ['H6', 'Los factores globales dominan a los locales', 'ok',
+   'FEVD: global ≈ 32% vs local ≈ 5%; betas estandarizados.'],
+  ['H7', 'El mercado internacional transmite el shock más completamente', 'ok',
+   'Interacción d_cobre × global = +0,25 (p = 0,01), prueba formal.'],
+];
+
+function renderHip() {
+  const g = document.getElementById('hip-grid');
+  if (!g) return;
+  const label = { ok: 'Respaldada', no: 'No respaldada', mid: 'Parcial' };
+  g.innerHTML = HIP.map(([h, t, st, ev]) =>
+    `<div class="card reveal"><div class="hip-top"><span class="num">${h}</span>
+      <span class="hip-badge ${st}">${label[st]}</span></div>
+      <h3 style="font-size:17px">${t}</h3><p>${ev}</p></div>`).join('');
+}
+
 async function main() {
   renderOE();
+  renderHip();
   let d;
   try { d = await (await fetch('data.json')).json(); }
   catch (e) { console.error('No se pudo cargar data.json', e); return; }

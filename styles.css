@@ -151,3 +151,10 @@ footer p{font-size:13px;color:var(--ink-2);max-width:70ch}
 .btn-reset{margin-top:8px;border:1px solid var(--line);background:#fff;color:var(--ink);
   border-radius:980px;padding:8px 16px;font-size:13.5px;font-family:inherit;cursor:pointer;justify-self:start}
 .btn-reset:hover{background:#f5f5f7}
+
+/* ---------- Veredicto de hipótesis ---------- */
+.hip-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.hip-badge{font-size:12px;font-weight:600;padding:4px 12px;border-radius:980px}
+.hip-badge.ok{background:#e7f8ec;color:#1a7f37}
+.hip-badge.no{background:#fdecea;color:#c4351c}
+.hip-badge.mid{background:#fff4e5;color:#b3631d}
