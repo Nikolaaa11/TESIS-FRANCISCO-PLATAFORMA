@@ -1,0 +1,21 @@
+{
+  "garch": {
+    "arch_lm_stat": 41.128,
+    "arch_lm_p": 0.0,
+    "omega": 15.8566,
+    "alpha": 0.1546,
+    "beta": 0.7038,
+    "persistencia": 0.8584,
+    "nu_t": 12.25,
+    "interpretacion": "Persistencia alta (~alpha+beta cercano a 1) indica que los shocks de volatilidad son duraderos; efectos ARCH significativos si arch_lm_p<0.05."
+  },
+  "gregory_hansen": {
+    "gh_adf_stat": -6.6825,
+    "fecha_quiebre": "2008-06",
+    "cv_5pct": -4.92,
+    "cv_10pct": -4.69,
+    "m_regresores": 2,
+    "cointegra_con_quiebre_5pct": true,
+    "interpretacion": "Si gh_adf_stat < valor crítico, hay cointegración con un quiebre en la fecha estimada; complementa al ARDL/Johansen sin quiebre (H5)."
+  }
+}

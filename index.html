@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tesis · Macroeconomía y retornos del cobre en Chile</title>
+<meta name="description" content="Impacto de las variables macroeconómicas en los retornos accionarios de las empresas de cobre con exposición a Chile: una comparación entre el mercado internacional y el chileno, 2004–2024."/>
+<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="container">
+    <div class="brand">Cu · Tesis</div>
+    <div class="links">
+      <a href="#resumen">Resumen</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#diseno">Diseño</a>
+      <a href="#metodo">Metodología</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#avanzado">Avanzado</a>
+      <a href="#conclusiones">Conclusiones</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container">
+    <img src="logo_uss.png" alt="Universidad San Sebastián" class="hero-logo"
+         onerror="this.style.display='none'"/>
+    <div class="eyebrow">Universidad San Sebastián · Magíster en Data Science</div>
+    <h1>Macroeconomía y retornos del cobre en Chile</h1>
+    <p class="sub">Impacto de las variables macroeconómicas en los retornos accionarios de las
+      empresas de cobre con exposición a Chile: una comparación entre el mercado bursátil
+      internacional y el chileno.</p>
+    <div class="meta">
+      <span class="pill">Período 2004–2024</span>
+      <span class="pill">Series de tiempo · Panel</span>
+      <span class="pill">Triangulación · 3 muestras</span>
+      <span class="pill">Python · statsmodels</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="#resultados">Ver resultados</a>
+      <a class="btn btn-ghost" href="#metodo">Metodología</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== RESUMEN ===== -->
+<section id="resumen">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Resumen</div>
+      <h2>Cuánto, cómo y dónde se transmite el shock del cobre</h2>
+      <p class="lead">Esta investigación cuantifica y compara el impacto de las variables
+        macroeconómicas globales y nacionales sobre los retornos accionarios de empresas de cobre
+        con exposición a Chile, contrastando su transmisión entre el mercado bursátil internacional
+        y el chileno, con un enfoque <strong>explicativo y de medición de impacto</strong> —no
+        predictivo.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal"><div class="num">01</div><h3>Factores sistemáticos</h3>
+        <p>Bajo el marco de la <em>Arbitrage Pricing Theory</em> (Ross, 1976), las variables macro
+        operan como factores de riesgo no diversificable que mueven los flujos esperados y la tasa
+        de descuento.</p></div>
+      <div class="card reveal"><div class="num">02</div><h3>Largo y corto plazo</h3>
+        <p>Se separa la relación de <strong>equilibrio de largo plazo</strong> (cointegración,
+        VECM) de la <strong>dinámica de corto plazo</strong> (retornos estacionarios, VAR).</p></div>
+      <div class="card reveal"><div class="num">03</div><h3>Comparación de mercados</h3>
+        <p>La triangulación por muestras permite testear si el mercado internacional incorpora el
+        shock del cobre <strong>más rápida y completamente</strong> que el chileno (segmentación
+        e eficiencia informacional).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OBJETIVOS ===== -->
+<section id="objetivos" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Objetivos específicos</div>
+      <h2>Seis preguntas, una arquitectura econométrica</h2>
+    </div>
+    <div class="grid grid-3" id="oe-grid"></div>
+  </div>
+</section>
+
+<!-- ===== DISEÑO / MUESTRAS ===== -->
+<section id="diseno">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Diseño de triangulación</div>
+      <h2>Tres muestras para un mismo subyacente</h2>
+      <p class="lead">Como las grandes productoras de cobre con operación en Chile (Codelco,
+        Escondida) no cotizan en la Bolsa de Santiago, el cobre puro local se reduce esencialmente
+        a una empresa. El diseño convierte esa restricción en una fortaleza: compara cómo distintos
+        mercados precian la misma exposición.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal"><span class="tag">Muestra B · global</span>
+        <h3>Cobre · mercado internacional</h3>
+        <p>Antofagasta, BHP, Anglo American, Lundin, Teck. Productoras de cobre con activos en Chile
+        que cotizan en LSE/NYSE/TSX. <strong>Panel</strong> con efectos fijos.</p></div>
+      <div class="card reveal"><span class="tag local">Muestra A · chileno</span>
+        <h3>Cobre · mercado chileno</h3>
+        <p>Sociedad Punta del Cobre (Pucobre), en la Bolsa de Santiago. Caso local de cobre puro;
+        se modela como <strong>serie de tiempo</strong> (ARDL, VAR).</p></div>
+      <div class="card reveal"><span class="tag local">Muestra C · chileno</span>
+        <h3>Sector minero · vehículo local</h3>
+        <p>Pucobre, CAP, SQM-B, Molymet. <em>Vehículo</em> del mercado chileno —no objeto de
+        estudio— que aporta sección cruzada; se controla por el precio de cada commodity.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METODOLOGÍA ===== -->
+<section id="metodo" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Metodología</div>
+      <h2>Una secuencia donde cada paso decide el siguiente</h2>
+      <p class="lead">El orden de integración de las series (I(0) vs I(1)) bifurca toda la estrategia:
+        determina si se modela en retornos, en niveles cointegrados, o en diferencias.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="dot">1</div><div><h4>Estacionariedad y quiebres · OE1</h4>
+        <p>Batería <code>ADF</code> · <code>Phillips-Perron</code> · <code>KPSS</code> (H₀ invertida)
+        y <code>Zivot-Andrews</code> para quiebres endógenos. En panel, <code>CIPS</code> de Pesaran.</p></div></div>
+      <div class="step reveal"><div class="dot">2</div><div><h4>Sensibilidad multifactorial · OE2</h4>
+        <p>Panel de efectos fijos con errores <code>Driscoll-Kraay</code>, robustos a heterocedasticidad,
+        autocorrelación y <strong>dependencia de sección cruzada</strong> (shock común del cobre).
+        Contraste global vs local por test de Wald de bloques.</p></div></div>
+      <div class="step reveal"><div class="dot">3</div><div><h4>Equilibrio de largo plazo · OE3</h4>
+        <p><code>ARDL bounds</code> (Pesaran-Shin-Smith) como prueba principal, con <code>Johansen</code>
+        y <code>Westerlund</code> de robustez. El <code>VECM</code> entrega el vector de cointegración
+        (β) y la velocidad de ajuste (α).</p></div></div>
+      <div class="step reveal"><div class="dot">4</div><div><h4>Dinámica de shocks · OE4</h4>
+        <p><code>VAR/VECM</code> con identificación de <code>Cholesky</code> ordenada por exogeneidad
+        (cobre → externas → locales → acción). Funciones <strong>impulso-respuesta</strong> y
+        descomposición de varianza (<code>FEVD</code>).</p></div></div>
+      <div class="step reveal"><div class="dot">5</div><div><h4>Estabilidad por régimen · OE5</h4>
+        <p>Fechado del ciclo con <code>Bry-Boschan / Harding-Pagan</code> sobre el precio del cobre,
+        e interacciones por fase. Robustez con <code>Markov-switching</code>.</p></div></div>
+      <div class="step reveal"><div class="dot">6</div><div><h4>Comparación de mercados · OE6</h4>
+        <p>Se replica todo en las tres muestras y se consolida una tabla comparativa para contrastar
+        la hipótesis de transmisión diferenciada (segmentación de mercados).</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULTADOS ===== -->
+<section id="resultados">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Resultados</div>
+      <h2>Evidencia preliminar, leída con sus tecnicismos</h2>
+      <p class="lead">Visualizaciones generadas a partir de los datos reales del proyecto
+        (cobre y tipo de cambio de FRED; acciones de Yahoo Finance). Cifras <strong>preliminares</strong>:
+        pendientes el EMBI y los controles a nivel de empresa.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="chart-card reveal">
+        <h3>Ciclo del precio del cobre</h3>
+        <p class="hint">Log-precio mensual con fases de expansión/contracción fechadas por el
+          algoritmo Bry-Boschan (subyacente del OE5).</p>
+        <div class="chart-wrap"><canvas id="cycleChart"></canvas></div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Sensibilidad por factor · muestra B</h3>
+        <p class="hint">Coeficientes del panel de efectos fijos (Driscoll-Kraay). Verde = positivo,
+          rojo = negativo; intensidad = significancia al 5%.</p>
+        <div class="chart-wrap"><canvas id="coefChart"></canvas></div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Descomposición de varianza · FEVD (h=12)</h3>
+        <p class="hint">Fracción de la varianza del retorno explicada por cada shock estructural
+          (mercado internacional). Sustento de la dominancia global (H6).</p>
+        <div class="chart-wrap"><canvas id="fevdChart"></canvas></div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Sensibilidad al cobre por muestra</h3>
+        <p class="hint">Coeficiente β del cobre en cada mercado. Compara cobre puro internacional (B)
+          y local (A) frente al sector minero local (C).</p>
+        <div class="chart-wrap"><canvas id="triBetaChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:20px">
+      <div class="chart-card reveal">
+        <h3>Triangulación · perfil comparado</h3>
+        <p class="hint">Radar normalizado de β cobre, R² y varianza explicada por shocks globales,
+          por muestra (OE6 / H7).</p>
+        <div class="chart-wrap tall"><canvas id="radarChart"></canvas></div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Orden de integración · OE1</h3>
+        <p class="hint">Pruebas de raíz unitaria sobre datos reales del cobre y el tipo de cambio.
+          La bifurcación I(0)/I(1) define la estrategia de modelamiento.</p>
+        <table class="table" id="statTable"></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HALLAZGOS AVANZADOS ===== -->
+<section id="avanzado">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Análisis avanzado</div>
+      <h2>Rigor de nivel: diagnósticos, quiebres y volatilidad</h2>
+      <p class="lead">Resultados que elevan la tesis más allá de la regresión base: dependencia de
+        sección cruzada, cointegración con quiebre estructural, volatilidad condicional y robustez
+        temporal — todo sobre datos reales.</p>
+    </div>
+    <div class="grid grid-2" id="adv-grid"></div>
+    <div class="grid grid-2" style="margin-top:20px">
+      <div class="chart-card reveal">
+        <h3>Impulso-respuesta: shock del cobre → retorno</h3>
+        <p class="hint">Respuesta dinámica estimada con el VAR (±2 errores estándar).</p>
+        <div class="chart-wrap"><canvas id="irfChart"></canvas></div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Robustez: β del cobre por subperíodo</h3>
+        <p class="hint">El efecto del cobre se mantiene y se intensifica tras 2020.</p>
+        <div class="chart-wrap"><canvas id="robChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONCLUSIONES ===== -->
+<section id="conclusiones" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Lectura e implicancias</div>
+      <h2>Qué dice (preliminarmente) la evidencia</h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="card reveal"><h3>El cobre domina, sin sorpresa de mercado</h3>
+        <p>La sensibilidad al cobre del cobre puro es similar en el mercado internacional y en el
+        chileno, y cae en el sector minero mixto (al diluirse con hierro, litio y molibdeno),
+        coherente con el canal de ingresos (H1).</p></div>
+      <div class="card reveal"><h3>Predominio de los factores globales</h3>
+        <p>La descomposición de varianza atribuye una fracción mayor a los shocks globales (cobre,
+        riesgo internacional) que a los locales, consistente con una economía pequeña, abierta y
+        exportadora de commodity (H6).</p></div>
+      <div class="card reveal"><h3>Transmisión entre mercados</h3>
+        <p>La comparación de la varianza explicada por shocks globales entre muestras ofrece una
+        primera lectura de la hipótesis de segmentación (H7): el mercado internacional tendería a
+        incorporar el shock de forma más completa.</p></div>
+      <div class="card reveal"><h3>Trabajo pendiente</h3>
+        <p>Incorporar el EMBI y los ratios de empresa, correr los diagnósticos completos
+        (CD-Pesaran, ARCH, estabilidad del VAR) y la robustez por subperíodos y definiciones
+        alternativas antes de cualquier conclusión definitiva.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p><strong>Nota de integridad.</strong> Las visualizaciones se generan a partir de datos reales
+      descargados de fuentes públicas (FRED, Yahoo Finance) y procesados con el código del repositorio.
+      Los resultados son <strong>preliminares</strong> y no constituyen conclusiones de tesis: faltan
+      series locales (EMBI), controles a nivel de empresa y la batería completa de robustez.</p>
+    <div class="disclaimer">⚠️ Resultados preliminares · sólo para validación metodológica. No citar
+      como hallazgos definitivos.</div>
+    <p style="margin-top:24px">Universidad San Sebastián · Magíster en Data Science ·
+      <a href="https://github.com/Nikolaaa11/TESIS-FRANCISCO-RIETTA">Repositorio en GitHub</a></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
