@@ -70,11 +70,11 @@ async function main() {
     plugins: [phaseBands]
   });
 
-  /* ---- 2. Coeficientes muestra B (barra horizontal) ---- */
-  const cf = d.coeficientes_B;
-  new Chart('coefChart', {
-    type: 'bar',
-    data: {
+  /* ---- 2 & 3. Coeficientes y FEVD CONMUTABLES por muestra (B/A/C) ---- */
+  let coefChart, fevdChart;
+  function buildCoef(s) {
+    const cf = (d.coeficientes && d.coeficientes[s]) || d.coeficientes_B;
+    const data = {
       labels: cf.map(x => x.factor),
       datasets: [{
         data: cf.map(x => x.coef),
@@ -84,34 +84,42 @@ async function main() {
         }),
         borderRadius: 6
       }]
-    },
-    options: {
-      indexAxis: 'y', maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { color: LINE }, ticks: { color: INK2 } },
-        y: { grid: { display: false }, ticks: { color: INK } }
+    };
+    if (coefChart) { coefChart.data = data; coefChart.update(); return; }
+    coefChart = new Chart('coefChart', {
+      type: 'bar', data,
+      options: {
+        indexAxis: 'y', maintainAspectRatio: false,
+        animation: { duration: 650, easing: 'easeOutQuart' },
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { label: c => ` coef: ${(+c.parsed.x).toFixed(3)}` } } },
+        scales: { x: { grid: { color: LINE }, ticks: { color: INK2 } },
+          y: { grid: { display: false }, ticks: { color: INK } } }
       }
-    }
-  });
-
-  /* ---- 3. FEVD doughnut ---- */
-  const fv = d.fevd_B;
-  const fvLabels = Object.keys(fv).map(k => k === 'retorno_cartera' ? 'Propio (idiosincrático)' : k);
-  new Chart('fevdChart', {
-    type: 'doughnut',
-    data: {
-      labels: fvLabels,
-      datasets: [{ data: Object.values(fv).map(v => +(v * 100).toFixed(1)),
-        backgroundColor: PALETTE, borderColor: '#fff', borderWidth: 2 }]
-    },
-    options: {
-      maintainAspectRatio: false, cutout: '62%',
-      plugins: {
-        legend: { position: 'right' },
-        tooltip: { callbacks: { label: c => ` ${c.label}: ${c.parsed}%` } }
-      }
-    }
+    });
+  }
+  function buildFevd(s) {
+    const fv = (d.fevd && d.fevd[s]) || d.fevd_B;
+    const labels = Object.keys(fv).map(k => k === 'retorno_cartera' ? 'Propio (idiosincrático)' : k);
+    const data = { labels, datasets: [{ data: Object.values(fv).map(v => +(v * 100).toFixed(1)),
+      backgroundColor: PALETTE, borderColor: '#fff', borderWidth: 2 }] };
+    if (fevdChart) { fevdChart.data = data; fevdChart.update(); return; }
+    fevdChart = new Chart('fevdChart', {
+      type: 'doughnut', data,
+      options: { maintainAspectRatio: false, cutout: '62%',
+        animation: { animateRotate: true, duration: 750 },
+        plugins: { legend: { position: 'right' },
+          tooltip: { callbacks: { label: c => ` ${c.label}: ${c.parsed}%` } } } }
+    });
+  }
+  buildCoef('B'); buildFevd('B');
+  document.querySelectorAll('.seg').forEach(seg => {
+    const target = seg.dataset.target;
+    seg.querySelectorAll('.seg-btn').forEach(btn => btn.addEventListener('click', () => {
+      seg.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (target === 'coef') buildCoef(btn.dataset.s); else if (target === 'fevd') buildFevd(btn.dataset.s);
+    }));
   });
 
   /* ---- 4. β del cobre por muestra (barras) ---- */

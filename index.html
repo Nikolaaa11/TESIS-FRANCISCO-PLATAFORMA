@@ -170,15 +170,29 @@
         <div class="chart-wrap"><canvas id="cycleChart"></canvas></div>
       </div>
       <div class="chart-card reveal">
-        <h3>Sensibilidad por factor · muestra B</h3>
+        <div class="card-head">
+          <h3>Sensibilidad por factor</h3>
+          <div class="seg" data-target="coef">
+            <button class="seg-btn active" data-s="B">B · global</button>
+            <button class="seg-btn" data-s="A">A · Chile</button>
+            <button class="seg-btn" data-s="C">C · minería</button>
+          </div>
+        </div>
         <p class="hint">Coeficientes del panel de efectos fijos (Driscoll-Kraay). Verde = positivo,
-          rojo = negativo; intensidad = significancia al 5%.</p>
+          rojo = negativo; intensidad = significancia. <strong>Cambia la muestra ↑</strong></p>
         <div class="chart-wrap"><canvas id="coefChart"></canvas></div>
       </div>
       <div class="chart-card reveal">
-        <h3>Descomposición de varianza · FEVD (h=12)</h3>
-        <p class="hint">Fracción de la varianza del retorno explicada por cada shock estructural
-          (mercado internacional). Sustento de la dominancia global (H6).</p>
+        <div class="card-head">
+          <h3>Descomposición de varianza · FEVD (h=12)</h3>
+          <div class="seg" data-target="fevd">
+            <button class="seg-btn active" data-s="B">B · global</button>
+            <button class="seg-btn" data-s="A">A · Chile</button>
+            <button class="seg-btn" data-s="C">C · minería</button>
+          </div>
+        </div>
+        <p class="hint">Fracción de la varianza del retorno explicada por cada shock estructural.
+          Sustento de la dominancia global (H6). <strong>Cambia la muestra ↑</strong></p>
         <div class="chart-wrap"><canvas id="fevdChart"></canvas></div>
       </div>
       <div class="chart-card reveal">

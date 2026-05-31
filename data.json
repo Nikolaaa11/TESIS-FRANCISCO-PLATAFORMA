@@ -7,6 +7,7 @@
   "triangulacion": [
     {
       "muestra": "B · cobre internacional",
+      "clave": "B",
       "mercado": "global",
       "n": 5,
       "beta_cobre": 0.5712,
@@ -16,6 +17,7 @@
     },
     {
       "muestra": "A · cobre Chile",
+      "clave": "A",
       "mercado": "chileno",
       "n": 1,
       "beta_cobre": 0.6308,
@@ -25,6 +27,7 @@
     },
     {
       "muestra": "C · minería Chile",
+      "clave": "C",
       "mercado": "chileno",
       "n": 4,
       "beta_cobre": 0.4185,
@@ -33,6 +36,142 @@
       "fevd_global": 0.2787
     }
   ],
+  "coeficientes": {
+    "B": [
+      {
+        "factor": "Cobre",
+        "coef": 0.5712,
+        "sig": true
+      },
+      {
+        "factor": "VIX (riesgo)",
+        "coef": -0.0077,
+        "sig": true
+      },
+      {
+        "factor": "Fed Funds",
+        "coef": 0.0196,
+        "sig": false
+      },
+      {
+        "factor": "Treasury 10Y",
+        "coef": 0.0226,
+        "sig": false
+      },
+      {
+        "factor": "Tipo cambio CLP",
+        "coef": -1.5735,
+        "sig": true
+      },
+      {
+        "factor": "Tasa local",
+        "coef": -0.0073,
+        "sig": false
+      },
+      {
+        "factor": "Actividad local",
+        "coef": -0.5231,
+        "sig": false
+      }
+    ],
+    "A": [
+      {
+        "factor": "Cobre",
+        "coef": 0.6308,
+        "sig": true
+      },
+      {
+        "factor": "VIX (riesgo)",
+        "coef": -0.0034,
+        "sig": true
+      },
+      {
+        "factor": "Fed Funds",
+        "coef": -0.0025,
+        "sig": false
+      },
+      {
+        "factor": "Treasury 10Y",
+        "coef": 0.0467,
+        "sig": true
+      },
+      {
+        "factor": "Tipo cambio CLP",
+        "coef": 0.1041,
+        "sig": false
+      },
+      {
+        "factor": "Tasa local",
+        "coef": -0.0034,
+        "sig": false
+      },
+      {
+        "factor": "Actividad local",
+        "coef": 0.2122,
+        "sig": false
+      }
+    ],
+    "C": [
+      {
+        "factor": "Cobre",
+        "coef": 0.4185,
+        "sig": true
+      },
+      {
+        "factor": "VIX (riesgo)",
+        "coef": -0.0034,
+        "sig": true
+      },
+      {
+        "factor": "Fed Funds",
+        "coef": 0.0153,
+        "sig": false
+      },
+      {
+        "factor": "Treasury 10Y",
+        "coef": 0.0346,
+        "sig": false
+      },
+      {
+        "factor": "Tipo cambio CLP",
+        "coef": -0.6474,
+        "sig": true
+      },
+      {
+        "factor": "Tasa local",
+        "coef": 0.0096,
+        "sig": false
+      },
+      {
+        "factor": "Actividad local",
+        "coef": -0.0784,
+        "sig": false
+      }
+    ]
+  },
+  "fevd": {
+    "B": {
+      "Cobre": 0.1798,
+      "VIX (riesgo)": 0.1401,
+      "Tipo cambio CLP": 0.0222,
+      "Tasa local": 0.0308,
+      "retorno_cartera": 0.6271
+    },
+    "A": {
+      "Cobre": 0.2428,
+      "VIX (riesgo)": 0.0518,
+      "Tipo cambio CLP": 0.0079,
+      "Tasa local": 0.0354,
+      "retorno_cartera": 0.6621
+    },
+    "C": {
+      "Cobre": 0.1725,
+      "VIX (riesgo)": 0.1062,
+      "Tipo cambio CLP": 0.0105,
+      "Tasa local": 0.0095,
+      "retorno_cartera": 0.7014
+    }
+  },
   "coeficientes_B": [
     {
       "factor": "Cobre",

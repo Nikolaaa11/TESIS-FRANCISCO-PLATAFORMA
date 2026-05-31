@@ -129,3 +129,12 @@ footer p{font-size:13px;color:var(--ink-2);max-width:70ch}
   font-size:14px;color:#8a5a18;margin-top:24px}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
+
+/* ---------- Control segmentado (interactivo) ---------- */
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.seg{display:inline-flex;background:#f0f0f3;border-radius:980px;padding:3px;gap:2px}
+.seg-btn{border:none;background:transparent;color:var(--ink-2);font-size:12.5px;font-weight:500;
+  padding:5px 12px;border-radius:980px;cursor:pointer;transition:all .2s ease;
+  font-family:inherit;letter-spacing:-.01em}
+.seg-btn:hover{color:var(--ink)}
+.seg-btn.active{background:#fff;color:var(--blue);box-shadow:0 1px 3px rgba(0,0,0,.12)}
